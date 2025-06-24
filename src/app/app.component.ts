@@ -1,13 +1,12 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { TemperaturePipe } from './temperature.pipe';
-import { SortPipe } from './sort.pipe';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
-  imports: [DatePipe, TemperaturePipe, SortPipe],
+  imports: [DatePipe, TemperaturePipe],
 })
 export class AppComponent {
   currentDate = new Date();
@@ -36,7 +35,9 @@ export class AppComponent {
   historicTemperatures = [
     25, 37, 19, -4, 28, 21, 19, 28, 33, 31, 9, 11, 5, -12, -5,
   ];
-
+  constructor() {
+    this.historicTemperatures.sort((a, b) => a - b); // Sort temperatures in ascending order
+  }
   onReset(index: number) {
     const newTemperatures = [...this.historicTemperatures];
     newTemperatures[index] = 18; // Reset to a specific temperature
