@@ -7,10 +7,11 @@
         <p>{{ currentDate | date : "medium" }}</p>
       </div>
     </header>
-    <p>New York: {{ currentTemperaturs.newYork | temperature : "°F" }}</p>
-    <p>Berlin: {{ currentTemperaturs.berlin | temperature : "°F" }}</p>
-    <p>Paris: {{ currentTemperaturs.paris | temperature : "°F" }}</p>
-    <p>Chicago: {{ currentTemperaturs.chicago | temperature : "°F" }}</p>
+    <ul class="temperature-list">
+      @for (tem of currentTemperatures; track $index) {
+      <li>{{ tem.city }}: {{ tem.temperature | temperature : "°F" }}</li>
+      }
+    </ul>
   </article>
 
   <article class="temperatures">
